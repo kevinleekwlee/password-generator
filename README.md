@@ -6,7 +6,7 @@ This repository contains a password generator. I created the JavaScript based on
 
 ## Usage
 
-This website can be accessed at
+This website can be accessed at https://kevinleekwlee.github.io/password-generator/
 
 Below is a screenshot of the website.
 
