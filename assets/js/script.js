@@ -28,7 +28,7 @@ function writePassword() {
     var password = generatePassword();
     passwordText.value = password;
   } else {
-    passwordText.value = "";
+    passwordText.value = "Try again.";
   }
 }
 
@@ -48,8 +48,8 @@ function generatePassword() {
 }
 
 //The getPrompts() function includes a set of if statements and prompts that determine the contents of the choiceArr.
-//Line 55 to 58 validates the user response to the prompt. If it does not fulfill the criteria, the user is given an alert that will remind them of the validation criteria and ask them to try again.
-//Row 60 to 75 determines the choiceArr depending on the confirm method response. 
+//Line 59 to 62 validates the user response to the prompt. If it does not fulfill the criteria, the user is given an alert that will remind them of the validation criteria and ask them to try again.
+//Row 69 to 83 determines the choiceArr depending on the confirm method response. 
 //A user selection of OK is established as TRUE and Cancel is established as FALSE. 
 //When true, the if statement will run the concat method to add the applicable array to the choiceArr.
 function getPrompts() {
@@ -61,20 +61,32 @@ function getPrompts() {
     return false;
   }
 
-  if (confirm("Would you like to include lowercase letters in your password?")) {
+  var includeLower = confirm("Would you like to include lowercase letters in your password?");
+  var includeUpper = confirm("Would you like to include uppercase letters in your password?");
+  var includeSpecial = confirm("Would you like to include special characters in your password?");
+  var includeNumber = confirm("Would you like to include numbers in your password?");
+
+  if (includeLower) {
     choiceArr = choiceArr.concat(lowerCaseArr);
   }
 
-  if (confirm("Would you like to include uppercase letters in your password?")) {
+  if (includeUpper) {
     choiceArr = choiceArr.concat(upperCaseArr);
   }
   
-  if (confirm("Would you like to include special characters in your password?")) {
+  if (includeSpecial) {
     choiceArr = choiceArr.concat(specialCharArr);
   }
 
-  if (confirm("Would you like to include numbers in your password?")) {
+  if (includeNumber) {
     choiceArr = choiceArr.concat(numberArr);
   }
+
+  //Row 86 to 89 establishes validation, if none of the character types are selected, an alert will state their error and ask them to try again.
+  if (!includeLower && !includeUpper && !includeSpecial && !includeNumber) {
+    alert("Must confirm at least one character type. Please try again.");
+    return false;
+  }
+  
   return true;
 }
